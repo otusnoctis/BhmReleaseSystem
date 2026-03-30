@@ -21,17 +21,21 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
-      - name: Restore
-        run: dotnet restore
+      - name: Install MAUI workload
+        run: dotnet workload install maui
 
+      - name: Restore
+        run: dotnet restore ./BhmReleaseSystem/BhmReleaseSystem.csproj
+          
       - name: Publish Win-x64
         run: >
           dotnet publish ./BhmReleaseSystem/BhmReleaseSystem.csproj
           -c Release
+          -f net10.0-windows10.0.19041.0
           -r win-x64
           --self-contained true
           -o ./publish/win-x64
-
+          
       - name: Create ZIP package
         run: Compress-Archive -Path ./publish/win-x64/* -DestinationPath ./BhmReleaseSystem-${{ github.ref_name }}-win-x64.zip
 
