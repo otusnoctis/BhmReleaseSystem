@@ -1,5 +1,17 @@
+# Build
 bin/
 obj/
+
+# NuGet
 /packages/
-riderModule.iml
-/_ReSharper.Caches/
+
+# Rider / JetBrains
+.idea/
+*.iml
+
+# ReSharper
+_ReSharper.Caches/
+
+# User-specific
+*.user
+*.suo
